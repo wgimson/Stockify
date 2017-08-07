@@ -1,4 +1,8 @@
-<h1>
-  {{title}}
-  <alert type="success">hello</alert>
-</h1>
+<div>
+  <h1>Simple Table Test</h1>
+  <table class="table table-hover">
+    <tr *ngFor="let row of rows; let i = index">
+      <td>{{rows[i]}}</td>
+    </tr>
+  </table>
+</div>
