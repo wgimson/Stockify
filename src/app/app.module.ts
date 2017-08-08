@@ -7,6 +7,8 @@ import { AlertModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 
+import { StocksService } from './services/stocks.service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -17,7 +19,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    StocksService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
