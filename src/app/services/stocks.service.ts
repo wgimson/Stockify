@@ -6,17 +6,24 @@ import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class StocksService {
 
-  private baseUrl = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey=MHH81AGK5BUOQ75L';
+  private baseUrl = 'https://www.alphavantage.co/query';
+  // ?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey=MHH81AGK5BUOQ75L';
 
   constructor(private http: Http) { }
 
-  getQuote(): Observable<any[]> {
-    // const params: URLSearchParams = new URLSearchParams();
-    // params.set('function', 'TIME_SERIES_INTRADAY');
-    // params.set('SYMBOL', 'MSFT');
+  getQuote(qStrObj): Observable<any> {
+    // CAN'T FIGURE OUT HOW TO MAKE THIS WORK
+    // let params = new URLSearchParams();
+    // params.set('function', 'TIME_SERIES_INTRADAY')
+    // params.set('symbol', 'MSFT');
     // params.set('interval', '1min');
     // params.set('apikey', 'MHH81AGK5BUOQ75L');
-    return this.http.get(this.baseUrl/*, { search: params }*/).map((res: Response) => res.json());
+
+    const queryString = `?function=${qStrObj.func}&symbol=${qStrObj.symb}&interval=${qStrObj.intv}&apikey=${qStrObj.apikey}`;
+    const url = this.baseUrl + queryString;
+
+    return this.http.get(url)
+                    .map((res: Response) => res.json());
   }
 
 }

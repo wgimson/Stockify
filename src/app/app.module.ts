@@ -8,6 +8,7 @@ import { AlertModule } from 'ngx-bootstrap';
 import { AppComponent } from './app.component';
 
 import { StocksService } from './services/stocks.service';
+import { NytService } from './services/nyt.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { StocksService } from './services/stocks.service';
     HttpModule
   ],
   providers: [
-    StocksService
+    StocksService,
+    NytService
   ],
   bootstrap: [AppComponent]
 })
