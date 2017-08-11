@@ -1,5 +1,10 @@
 <div>
   <h1>Simple Table Test</h1>
+
+  <select (change)="onDDSelect($event.target.value)">
+    <option *ngFor="let section of sections; let i = index" value="{{section.display_name}}">{{section.display_name}}</option>
+  </select>
+
   <table class="table table-hover">
     <tr *ngFor="let story of stories; let i = index">
       <td><a href="{{story.url}}">{{story.title}}</a></td>

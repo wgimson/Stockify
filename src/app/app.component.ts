@@ -11,6 +11,7 @@ import { NytService } from './services/nyt.service';
 export class AppComponent implements OnInit {
   rows: any[] = [];
   stories: any[] = [];
+  sections: any[] = [];
 
   constructor(
     private stockService: StocksService,
@@ -37,7 +38,7 @@ export class AppComponent implements OnInit {
   getAllStories() {
     const configObject = {
       source: 'all',
-      section: 'all',
+      section: 'movies',
       format: 'json',
       apikey: '756afd4232054fa6b6adfd69d04af251'
     };
@@ -45,6 +46,18 @@ export class AppComponent implements OnInit {
     this.nytService.getAllStories(configObject).subscribe(
       (data: any) => {
         this.stories = data;
+      }
+    );
+  }
+
+  getAllSections() {
+    const configObject = {
+      apikey: '756afd4232054fa6b6adfd69d04af251'
+    };
+
+    this.nytService.getAllSections(configObject).subscribe(
+      (data: any) => {
+        this.sections = data;
       }
     );
   }
@@ -57,7 +70,13 @@ export class AppComponent implements OnInit {
     }
   }
 
+  // EVENTS
+  onDDSelect(val) {
+    alert(val);
+  }
+
   ngOnInit() {
+    this.getAllSections();
     this.getQuote();
     this.getAllStories();
   }
